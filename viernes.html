@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Viernes de Tendencias: Inventando Apps Sostenibles</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Warm Neutrals & Green -->
+    <!-- Application Structure Plan: Se ha diseñado una estructura de página única con desplazamiento vertical que guía al estudiante a través de los cuatro pasos clave del proyecto: 1) Detección del problema, 2) Invención de la solución, 3) Diseño del logotipo, y 4) Entrega. Esta estructura lineal es la más intuitiva para un proceso paso a paso, facilitando el seguimiento y la comprensión. Se utilizan tarjetas interactivas y un ejemplo claro para desglosar la información. El flujo de usuario es simple: leer y desplazarse hacia abajo, interactuando con las secciones para revelar más detalles. Se eligió este diseño por su claridad y enfoque pedagógico, transformando un documento de instrucciones en una guía interactiva. -->
+    <!-- Visualization & Content Choices: 1. Problemas (Ambiental, Social, Económico): Meta: Organizar/Informar. Presentación: Tarjetas interactivas (HTML/Tailwind). Interacción: Al hacer clic, se revela una descripción detallada. Justificación: Fomenta la exploración activa y mantiene la interfaz limpia. 2. Propuesta de App: Meta: Guiar la ideación. Presentación: Un diseño de tarjeta estructurada que detalla los componentes de la propuesta. Justificación: Desglosa la tarea en partes manejables. 3. Ejemplo "Rescate Food": Meta: Informar/Inspirar. Presentación: Un contenedor visualmente separado con todos los elementos del ejemplo. Justificación: Proporciona un modelo claro y completo a seguir. No se utilizan gráficos complejos ya que el contenido es conceptual y basado en texto. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #FDFBF8;
+            color: #4A4A4A;
+        }
+        .card {
+            background-color: #FFFFFF;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+        }
+        .btn {
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        .btn:hover {
+            transform: scale(1.05);
+        }
+        .details {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out;
+        }
+        .details.open {
+            max-height: 500px;
+        }
+        .step-icon {
+            background-color: #34D399; /* Emerald 400 */
+            color: white;
+            border-radius: 50%;
+            width: 3rem;
+            height: 3rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.5rem;
+        }
+    </style>
+</head>
+<body class="antialiased">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <header class="text-center mb-16">
+            <h1 class="text-4xl md:text-5xl font-bold text-emerald-600 mb-2">Viernes de Tendencias</h1>
+            <p class="text-xl text-gray-600">Invención de aplicaciones o software sostenibles</p>
+        </header>
+
+        <main class="space-y-20">
+            <!-- Sección Objetivo -->
+            <section id="objetivo" class="text-center p-8 card">
+                <h2 class="text-2xl font-bold mb-4 text-emerald-700">Nuestro Objetivo</h2>
+                <p class="max-w-3xl mx-auto text-lg text-gray-700">
+                    Hoy nos convertiremos en innovadores. Aprenderemos a identificar una problemática social, ambiental o económica en nuestro entorno y propondremos una solución creativa a través de una aplicación o software, utilizando la inteligencia artificial para darle vida a nuestra idea.
+                </p>
+            </section>
+
+            <!-- Paso 1: Detectar una problemática -->
+            <section id="paso1">
+                 <div class="flex items-center gap-4 mb-8">
+                    <div class="step-icon">1</div>
+                    <h2 class="text-3xl font-bold text-gray-800">Detectar una Problemática</h2>
+                </div>
+                <p class="text-lg text-gray-600 mb-8 max-w-4xl">Todo gran proyecto empieza con una pregunta. Piensa en un problema de tu comunidad, ciudad o incluso a nivel global. Para ayudarte a empezar, explora una de las siguientes áreas. Haz clic en cada categoría para ver ejemplos.</p>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <!-- Tarjeta Ambiental -->
+                    <div class="card cursor-pointer" onclick="toggleDetails('ambiental')">
+                        <div class="p-6">
+                            <div class="flex items-center gap-4">
+                                <span class="text-3xl">🌱</span>
+                                <h3 class="text-xl font-semibold text-green-700">Ambiental</h3>
+                            </div>
+                            <div id="ambiental-details" class="details mt-4 text-gray-600">
+                                <p>Problemas relacionados con la salud de nuestro planeta.</p>
+                                <ul class="list-disc list-inside mt-2 space-y-1">
+                                    <li>Contaminación del aire o agua.</li>
+                                    <li>Deforestación y pérdida de biodiversidad.</li>
+                                    <li>Consumo excesivo de plásticos y generación de basura.</li>
+                                    <li>Desperdicio de alimentos.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Tarjeta Social -->
+                    <div class="card cursor-pointer" onclick="toggleDetails('social')">
+                        <div class="p-6">
+                            <div class="flex items-center gap-4">
+                                <span class="text-3xl">👥</span>
+                                <h3 class="text-xl font-semibold text-blue-700">Social</h3>
+                            </div>
+                            <div id="social-details" class="details mt-4 text-gray-600">
+                                <p>Desafíos que afectan el bienestar y la equidad en nuestra comunidad.</p>
+                                <ul class="list-disc list-inside mt-2 space-y-1">
+                                    <li>Desigualdad de oportunidades.</li>
+                                    <li>Acceso limitado a educación o salud de calidad.</li>
+                                    <li>Problemas de salud mental y bienestar.</li>
+                                    <li>Falta de inclusión para grupos vulnerables.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Tarjeta Económico -->
+                    <div class="card cursor-pointer" onclick="toggleDetails('economico')">
+                        <div class="p-6">
+                             <div class="flex items-center gap-4">
+                                <span class="text-3xl">💰</span>
+                                <h3 class="text-xl font-semibold text-amber-700">Económico</h3>
+                            </div>
+                            <div id="economico-details" class="details mt-4 text-gray-600">
+                                <p>Aspectos que impactan el desarrollo y la estabilidad financiera.</p>
+                                <ul class="list-disc list-inside mt-2 space-y-1">
+                                    <li>Desempleo o empleos precarios.</li>
+                                    <li>Falta de apoyo a pequeñas y medianas empresas (PYMES).</li>
+                                    <li>Necesidad de promover el comercio justo y local.</li>
+                                    <li>Educación financiera insuficiente.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Paso 2: Inventar una aplicación/software -->
+            <section id="paso2">
+                <div class="flex items-center gap-4 mb-8">
+                    <div class="step-icon">2</div>
+                    <h2 class="text-3xl font-bold text-gray-800">Inventar una Aplicación/Software</h2>
+                </div>
+                <p class="text-lg text-gray-600 mb-8 max-w-4xl">Ahora es tu turno de ser el arquitecto de la solución. Diseña una app o un sistema que ayude a atender la problemática que identificaste. Define los siguientes puntos clave de tu propuesta:</p>
+                <div class="card p-8 bg-emerald-50 border border-emerald-200">
+                    <div class="space-y-6">
+                        <div>
+                            <h4 class="text-lg font-semibold text-emerald-800">Nombre de la App:</h4>
+                            <p class="text-gray-600">Un nombre creativo y fácil de recordar que refleje su propósito.</p>
+                        </div>
+                        <div>
+                            <h4 class="text-lg font-semibold text-emerald-800">¿Qué hace?</h4>
+                            <p class="text-gray-600">Describe su función principal de forma clara y concisa. ¿Cuál es su característica más importante?</p>
+                        </div>
+                        <div>
+                            <h4 class="text-lg font-semibold text-emerald-800">¿Cómo ayuda a resolver la problemática?</h4>
+                            <p class="text-gray-600">Explica el impacto directo de tu app. ¿Qué cambio positivo genera?</p>
+                        </div>
+                         <div>
+                            <h4 class="text-lg font-semibold text-emerald-800">¿Por qué sería sostenible a largo plazo?</h4>
+                            <p class="text-gray-600">Piensa en su viabilidad. ¿Cómo se mantendría funcionando y creciendo con el tiempo? ¿Qué beneficios continuos ofrece?</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Ejemplo Guiado -->
+            <section id="ejemplo" class="bg-white p-8 rounded-lg shadow-lg border border-gray-200">
+                <h3 class="text-2xl font-bold text-center mb-8 text-emerald-700">Ejemplo Guiado: "Rescate Food"</h3>
+                <div class="grid md:grid-cols-2 gap-8 items-center">
+                    <div>
+                        <p class="mb-4 text-lg"><strong class="font-semibold text-gray-800">Problema Detectado:</strong> El gran desperdicio de alimentos en perfecto estado por parte de supermercados y restaurantes, mientras muchas personas tienen dificultades para acceder a comida.</p>
+                        <div class="space-y-4">
+                            <p><strong class="font-semibold text-emerald-600">¿Qué hace?</strong> Conecta a restaurantes y tiendas con exceso de comida con asociaciones civiles y consumidores que buscan productos a bajo costo o de forma gratuita.</p>
+                            <p><strong class="font-semibold text-emerald-600">Sostenibilidad:</strong> Es sostenible porque ataca tres frentes: reduce la basura orgánica (ambiental), mejora el acceso a alimentos para sectores vulnerables (social) y permite a los comercios recuperar costos y reducir pérdidas (económico).</p>
+                        </div>
+                    </div>
+                    <div class="text-center p-6 bg-gray-50 rounded-lg">
+                        <h4 class="font-semibold text-lg mb-4 text-gray-700">Logotipo (Generado con IA)</h4>
+                        <div class="mx-auto bg-emerald-500 text-white w-32 h-32 rounded-full flex flex-col items-center justify-center text-4xl shadow-md">
+                           <span>🍽️</span>
+                           <span class="text-sm font-bold mt-1">RescateFood</span>
+                        </div>
+                        <p class="text-sm text-gray-500 mt-4">Un ícono simple que representa un plato de comida, con colores verdes que evocan frescura y sostenibilidad.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Paso 3: Diseño de logotipo con IA -->
+            <section id="paso3">
+                <div class="flex items-center gap-4 mb-8">
+                    <div class="step-icon">3</div>
+                    <h2 class="text-3xl font-bold text-gray-800">Diseño de Logotipo con IA</h2>
+                </div>
+                <p class="text-lg text-gray-600 mb-8 max-w-4xl">Una imagen poderosa puede contar una gran historia. Genera un logotipo sencillo que represente la esencia de tu aplicación. Utiliza alguna de estas plataformas gratuitas de generación de imágenes con IA para crear tu propuesta visual.</p>
+                <div class="flex flex-wrap gap-4">
+                    <a href="https://www.canva.com/features/text-to-image/" target="_blank" class="btn bg-emerald-500 text-white font-bold py-2 px-4 rounded-lg hover:bg-emerald-600">Canva (Texto a Imagen)</a>
+                    <a href="https://www.bing.com/images/create" target="_blank" class="btn bg-blue-500 text-white font-bold py-2 px-4 rounded-lg hover:bg-blue-600">Bing Image Creator</a>
+                    <a href="https://ideogram.ai/" target="_blank" class="btn bg-purple-500 text-white font-bold py-2 px-4 rounded-lg hover:bg-purple-600">Ideogram.ai</a>
+                </div>
+            </section>
+            
+            <!-- Paso 4: Entrega del proyecto -->
+            <section id="paso4">
+                <div class="flex items-center gap-4 mb-8">
+                    <div class="step-icon">4</div>
+                    <h2 class="text-3xl font-bold text-gray-800">Entrega del Proyecto</h2>
+                </div>
+                <p class="text-lg text-gray-600 mb-8 max-w-4xl">Es hora de compartir tu innovación. Elabora una presentación corta en el formato que prefieras (video, presentación digital, podcast, historia interactiva, etc.). Asegúrate de que tu presentación incluya de forma clara y atractiva los siguientes tres puntos:</p>
+                <ul class="space-y-4">
+                    <li class="card p-6 bg-green-50 border-l-4 border-green-500">
+                        <h4 class="text-lg font-semibold text-green-800">1. Problema Detectado</h4>
+                        <p class="text-gray-700">Contextualiza y explica la importancia del problema que elegiste abordar.</p>
+                    </li>
+                    <li class="card p-6 bg-blue-50 border-l-4 border-blue-500">
+                        <h4 class="text-lg font-semibold text-blue-800">2. Propuesta de la Aplicación</h4>
+                        <p class="text-gray-700">Presenta tu solución: nombre, funciones, impacto y sostenibilidad.</p>
+                    </li>
+                    <li class="card p-6 bg-amber-50 border-l-4 border-amber-500">
+                        <h4 class="text-lg font-semibold text-amber-800">3. Logotipo Generado con IA</h4>
+                        <p class="text-gray-700">Muestra tu logotipo y explica brevemente cómo representa tu idea.</p>
+                    </li>
+                </ul>
+            </section>
+        </main>
+
+        <footer class="text-center mt-20 pt-8 border-t">
+            <p class="text-gray-500">&copy; 2025 Introducción a la Informática. ¡A crear un futuro mejor con tecnología!</p>
+        </footer>
+    </div>
+
+    <script>
+        function toggleDetails(id) {
+            const details = document.getElementById(id + '-details');
+            if (details) {
+                details.classList.toggle('open');
+            }
+        }
+    </script>
+</body>
+</html>
